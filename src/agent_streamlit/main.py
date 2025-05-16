@@ -8,7 +8,7 @@ import asyncio
 load_dotenv()
 
 st.title("ChatOrbit")
-st.subheader("A versatile AI chatbot that lets you choose your brain — Gemini or Two Different models of Together AI — for smarter, faster answers.")
+st.subheader("A versatile AI chatbot that lets you choose your brain — Gemini or Different models of Together AI — for smarter, faster answers.")
 
 gemini_api_key = os.getenv("GEMINI_API_KEY")
 aitogether_api_key = os.getenv("AI_TOGETHER_API_KEY")
@@ -36,9 +36,13 @@ model2 = OpenAIChatCompletionsModel(
     model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
     openai_client=external_provider2
 )
+model3 = OpenAIChatCompletionsModel(
+    model="mistralai/Mixtral-8x7B-Instruct-v0.1",
+    openai_client=external_provider2
+)
 
 with st.sidebar:
-    model_selection = st.selectbox("Choose the model you wanna search with!",["Gemini 2.0 flash","AI_Together(DeepSeek)", "AI Together(Meta-Llama-3.1)"])
+    model_selection = st.selectbox("Choose the model you wanna search with!",["Gemini 2.0 flash","Deep Seek R1", "Meta-Llama-3.1", "Mixtral-8x7B"])
     st.write("To clear chat history click Reset Chat!")
     if st.sidebar.button("Reset Chat"):
         st.session_state.chat_history = []
@@ -47,10 +51,13 @@ selected_model="Gemini 2.0 flash"
 
 if model_selection=="Gemini 2.0 flash":
     selected_model=model
-elif model_selection=="AI_Together(DeepSeek)":
+elif model_selection=="Deep Seek R1":
     selected_model=model1
-elif model_selection=="AI Together(Meta-Llama-3.1)":
+elif model_selection=="Meta-Llama-3.1":
     selected_model=model2
+elif model_selection=="Mixtral-8x7B":
+    selected_model=model3
+
 
 async def run_agent(agent, user_input):
     result = await Runner.run(agent, user_input)
