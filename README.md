@@ -33,7 +33,7 @@ Make sure you have the following API keys:
 
 Create a `.env` file in the root directory:
 
-```env
+`env
 GEMINI_API_KEY=your_gemini_api_key
 AI_TOGETHER_API_KEY=your_together_ai_key
 
@@ -48,7 +48,7 @@ Mixtral-8x7B Instruct	Together AI	Sparse mixture-of-experts model
 streamlit chatbot llm openai together-ai gemini-api python conversational-ai asyncio
 
 📄 License
-MIT License © 2025 [Your Name or Username]
+MIT License © 2025 [MuhammadUsmanGM]
 
 🙌 Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you’d like to change.
