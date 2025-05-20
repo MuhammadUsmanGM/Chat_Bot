@@ -54,3 +54,16 @@ MIT License © 2025 [Your Name or Username]
 Pull requests are welcome. For major changes, please open an issue first to discuss what you’d like to change.
 ---
 
+## 📸 Model Output Screenshots
+
+### 🤖 Gemini 2.0 Output
+![Gemini Output](Gemini%20Output.png)
+
+### 🔍 DeepSeek R1 Output
+![DeepSeek Output](DeepSeek%20Output.png)
+
+### 🦙 Meta-LLaMA 3.1 Output
+![Meta-Llama Output](Meta-Llama-3.1%20Output.png)
+
+### 🔀 Mixtral-8x7B Output
+![Mixtral Output](Mixtral7x8B%20Output.png)
