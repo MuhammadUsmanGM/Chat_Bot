@@ -1,0 +1,81 @@
+manifest:
+  version: "0.1.2"
+  schema: https://a2as.org/cert/schema
+  subject:
+    name: muhammadusmangm/chat_bot
+    source: https://github.com/muhammadusmangm/chat_bot
+    branch: master
+    commit: "3134103c"
+    scope: [src/agent_streamlit/main.py]
+  issued:
+    by: A2AS.org
+    at: '2026-01-26T16:11:42Z'
+  signatures:
+    digest: sha256:_26jAkjwjL6B4nGVKVCiM9m6SCZgD5XqMBq5qyGXBiY
+    key: ed25519:kJUHf-Y3HDb4taunIAFbhWM7mVPqRUlDEX-Maq581Co
+    sig: ed25519:i_1dVNdgBYNYN_7qHTE_yAyXlmppzPoG7qtrFAhAehEorOlwQtoiIoRtfWyCRkrNdr8xlKd9t7qXBaxGEAgmAw
+
+agents:
+  agent:
+    type: instance
+    models: [selected_model]
+    params:
+      function: app
+      name: chatbot
+      instructions: [Give the most suitable answer to the prompt given by user.]
+
+models:
+  selected_model:
+    type: variable
+    agents: [agent]
+
+imports:
+  Agent: agents.Agent
+  asyncio: asyncio
+  AsyncOpenAI: agents.AsyncOpenAI
+  load_dotenv: dotenv.load_dotenv
+  OpenAIChatCompletionsModel: agents.OpenAIChatCompletionsModel
+  os: os
+  Runner: agents.Runner
+  set_default_openai_client: agents.set_default_openai_client
+  set_tracing_disabled: agents.set_tracing_disabled
+  st: streamlit
+
+functions:
+  app:
+    type: sync
+    module: src.agent_streamlit.main
+  run_agent:
+    type: async
+    module: src.agent_streamlit.main
+    args: [agent, user_input]
+
+variables:
+  AI_TOGETHER_API_KEY:
+    type: env
+    params:
+      caller: [os.getenv]
+      path: [src.agent_streamlit.main]
+  GEMINI_API_KEY:
+    type: env
+    params:
+      caller: [os.getenv]
+      path: [src.agent_streamlit.main]
+
+networks:
+  api.together.xyz:
+    type: api
+    actions: [GET]
+    urls: [/v1]
+    protocols: [https]
+    ports: ["443"]
+    params:
+      links: [base_url]
+  generativelanguage.googleapis.com:
+    type: api
+    actions: [GET]
+    urls: [/v1beta/openai/]
+    protocols: [https]
+    ports: ["443"]
+    params:
+      links: [base_url]
